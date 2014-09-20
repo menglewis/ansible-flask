@@ -1,0 +1,21 @@
+---
+
+- name: Install base packages
+  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
+  with_items:
+    - build-essential
+    - ntp
+    - htop
+    - git
+    - python-dev
+    - python-pip
+    - python-pycurl
+    - supervisor
+    - libjpeg-dev
+    - libpng-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - libmemcached-dev
+    - vim
+    - python-software-properties
+  tags: packages

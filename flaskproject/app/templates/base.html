@@ -1,0 +1,34 @@
+<!doctype html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>{% block page_title %}Flask Project{% endblock %}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        {% block custom_meta %}{% endblock %}
+
+        {% block css %}
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='libs/bootstrap/dist/css/bootstrap.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        {% endblock %}
+
+    </head>
+    <body>
+
+        {% include "nav.html" %}
+
+
+            <div class="container">
+                {% include "flash.html" %}
+
+                {% block content %}{% endblock %}
+            </div>
+
+        </div><!-- end container -->
+
+    {% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='libs/jquery/dist/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    {% endblock %}
+    </body>
+</html>

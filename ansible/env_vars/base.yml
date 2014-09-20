@@ -1,0 +1,4 @@
+project_name: flaskproject
+application_name: flaskproject
+git_repo: https://github.com/menglewis/wsgi-ansible.git
+

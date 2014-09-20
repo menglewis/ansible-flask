@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider :virtualbox do |vb, override|
+    override.vm.box = "precise64"
+    override.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+    vb.customize ['modifyvm', :id, "--memory", "1024"]
+  end
+
+  # Forwards the following ports between the Host and Guest machine
+  # If there is a collision on the host, it will automatically re-assign the host port
+  config.vm.network :forwarded_port, guest: 8006, host: 8006, auto_correct: true
+  config.vm.network :forwarded_port, guest: 8007, host: 8007, auto_correct: true
+
+  config.vm.network :private_network, ip: "192.168.23.11"
+
+  #if File.exists?("../flaskproject")
+  #  config.vm.synced_folder "../flaskproject", "/webapps/flaskproject"
+  #end
+
+  config.vm.provision "ansible" do |ansible|
+  	ansible.playbook = "playbooks/vagrant.yml"
+  	ansible.inventory_path = "hosts"
+  	ansible.verbose = "v"
+  end
+end

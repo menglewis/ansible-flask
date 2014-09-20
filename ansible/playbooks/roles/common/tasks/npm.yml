@@ -1,0 +1,14 @@
+---
+
+- name: Add more updated version of node.js to registry
+  apt_repository: repo='ppa:chris-lea/node.js'
+
+- name: Install nodejs and npm
+  apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
+  with_items:
+    - nodejs
+  tags: packages
+
+- name: Install bower package globally
+  npm: name=bower global=yes
+  sudo: yes

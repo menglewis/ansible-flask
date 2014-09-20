@@ -1,0 +1,11 @@
+---
+
+- name: Install packages required by the app inside virtualenv
+  pip: virtualenv={{ virtualenv_path }} requirements={{ requirements_file }}
+
+- name: Create the database
+  shell: . {{ virtualenv_path }}/bin/activate
+         && . {{ virtualenv_path }}/bin/postactivate
+         && cd {{ project_path }}
+         && python manage.py createdb
+  tags: flask

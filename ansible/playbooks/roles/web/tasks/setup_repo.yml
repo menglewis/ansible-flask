@@ -1,0 +1,8 @@
+---
+
+#- name: Setup the Git repo
+#  git: repo={{ git_repo }} dest={{ project_path }} accept_hostkey=yes
+#  tags: git
+
+- name: Copy files to VM
+  copy: src=../../{{ project_name }} dest=/webapps mode=0644
